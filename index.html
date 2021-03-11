@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Puzzle</title>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+	<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+
+<body>
+	<a-scene>
+		<!-- <a-sky color="darkgray"></a-sky> -->
+		<!-- Camera -->
+		<a-camera>
+			<a-entity cursor="fuse: true; fuseTimeout: 1000;" position="0 0 -1" geometry="primitive: sphere; radius:0.005;"
+			material="color: white; shaper: flat;"
+			animation__enter="property: scale; to: 3 3 3; dur:1000; easing: linear; startEvents: mouseenter;"
+			event-set__reset="_event: animationcomplete_enter; scale: 1 1 1"
+			animation__leave="property: scale; to: 1 1 1; dur:1000; easing: linear; startEvents: mouseleave;"
+			></a-entity>
+		</a-camera>
+
+		<!-- "NukeTown From Call Of Duty.." (https://skfb.ly/6SRLP) by Ghost is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->
+		<!--"Tesla Cybertruck" (https://skfb.ly/6QWrS) by PolyDucky is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
+		<!-- "F1" (https://skfb.ly/6X9Hu) by MartianDays is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->
+		<!-- "Red Bull Racing" (https://skfb.ly/6YJoz) by Njan is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->
+		<a-assets>
+			<a-asset-item id="nuketown" src="assets/nuke/scene.gltf"></a-asset-item>
+			<a-asset-item id="f1_c" src="assets/red_bull_racing/scene.gltf"></a-asset-item>
+			<a-asset-item id="f1_e" src="assets/f1e/scene.gltf"></a-asset-item>
+			<a-asset-item id="cybertruck" src="assets/tesla_cybertruck/scene.gltf"></a-asset-item>
+            <img id="sky" src="assets/clear-sunny-sky.jpg">
+		</a-assets>
+
+		<!-- Left -->
+		<a-entity gltf-model="#nuketown" scale="0.01 0.01 0.01" rotation="0 -100 0" position="0 0.6 0"></a-entity>
+		
+
+		<a-entity id="f1cText"  text="value: Good Job! You Won! Yes this was sponsored... 'Red Bull gives you wings'; color: black;" scale="6 6 6" position="20 3 -5" rotation="0 -70 0"></a-entity>
+		<a-entity gltf-model="#f1_c" scale="0.025 0.025 0.025" position="18 0.55 -5" rotation="0 0 0"
+		
+		animation="
+				property: rotation; 
+				from: 0 0 0; 
+				to: 0 360 0; 
+				startEvents: mouseenter; 
+				loop: true;
+				dur: 10000; 
+				easing:linear;
+				"
+		
+		>		</a-entity>
+		
+		<!-- event-set__enteredthecybertruck="
+				_event:mouseenter;
+				property: rotation; 
+				from: 0 90 0; 
+				to: 0 360 0; 
+				loop: true; 
+				dur: 10000"
+		event-set__leaving="
+				property:rotation;
+				to: 0 360 0;
+				loop: true;
+				dur:58000;
+				easing:linear;"  -->
+		<a-entity id="cybertruckText" text="value: Good Job! Now click the car and follow the direction the front points towards; color: black;" scale="15 15 15" position="3 4 16" rotation="0 -180 0"></a-entity>
+		<a-entity gltf-model="#cybertruck" scale="1.5 1.5 1.5" position="5 1.4 12" rotation="0 90 0" 
+		animation="
+				property: rotation; 
+				from: 0 90 0; 
+				to: 0 150 0; 
+				startEvents: mouseenter; 
+				dur: 10000; 
+				easing:linear;
+				_target: #cybertruckText;
+				position: 10 0 0"
+				>
+				</a-entity>
+
+		<a-entity id="f1eText"  text="value: No! I ment Formula 1 not F1 like the engine SMH anyway follow the direction the bell is pointing to; color: black;" scale="4.5 4.5 4.5" position="-20 2 -3" rotation="0 90 0"></a-entity>
+		<a-entity gltf-model="#f1_e" scale="0.004 0.004 0.004" position="-20 2.65 -6" rotation="0 90 0"
+		animation="
+				property: rotation; 
+				from: 0 0 0; 
+				to: 90 -90 0; 
+				startEvents: mouseenter; 
+				dur: 4000; 
+				easing:linear;
+				"
+		
+		></a-entity>
+
+
+
+		<!-- Bottom Red Box -->
+		<a-entity text="value: Hello There, Welcome to my VR puzzle. Your mission, if you choose to accept is to find the treasure by completing the puzzle. Your first clue is to find the Cybertruck. No peeking in the houses! Good Luck 47.; color: black;" scale="15 15 15" position="0 8 -10"></a-entity>
+		
+		<a-sky src="#sky"></a-sky>
+
+	</a-scene>
+</body>
+
+</html>
